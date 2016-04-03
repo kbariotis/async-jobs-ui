@@ -13,7 +13,7 @@ class TaskList extends React.Component {
     }
 
     componentDidMount() {
-       TaskStore.addChangeListener(this._onChange);
+       TaskStore.addChangeListener(this._onChange.bind(this));
      }
 
      componentWillUnmount() {
@@ -39,6 +39,7 @@ class TaskList extends React.Component {
       * Event handler for 'change' events coming from the TodoStore
       */
      _onChange () {
+       console.log(TaskStore.getAll());
        this.setState({
          allTasks: TaskStore.getAll()
        });

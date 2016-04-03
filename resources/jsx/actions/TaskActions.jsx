@@ -1,11 +1,11 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 
-var TaskActions = {
+const TaskActions = {
 
   /**
    * @param  {string} text
    */
-  create: function(text) {
+  create: (text) => {
     AppDispatcher.dispatch({
       actionType: 'TASK_CREATE',
       text: text
@@ -16,7 +16,7 @@ var TaskActions = {
    * @param  {string} id The ID of the ToDo item
    * @param  {string} text
    */
-  updateCompletion: function(id, percent) {
+  updateCompletion: (id, percent) => {
     AppDispatcher.dispatch({
       actionType: 'TASK_UPDATE_COMPLETION',
       id: id,

@@ -1,35 +1,25 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import {EventEmitter} from 'events';
 import assign from 'object-assign';
+import io from 'socket.io-client';
 
 var CHANGE_EVENT = 'change';
 
-var _todos = {
-  1: {
-    id: 1,
-    label: 'Something',
-    percent: 70
-  },
-  2: {
-    id: 2,
-    label: 'Something Else',
-    percent: 20
-  }
-};
+var _todos = {};
 
 /**
  * Create a TODO item.
  * @param  {string} text The content of the TODO
  */
-function create(text) {
+function create(text, percent) {
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
   // Using the current timestamp + random number in place of a real id.
   var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
   _todos[id] = {
     id: id,
-    complete: false,
-    text: text
+    percent: percent,
+    label: text
   };
 }
 
@@ -120,16 +110,17 @@ AppDispatcher.register(function(action) {
   var text;
 
   switch(action.actionType) {
-    case TodoConstants.TASK_CREATE:
+    case 'TASK_CREATE':
       text = action.text.trim();
+      percent = action.percent.trim();
       if (text !== '') {
-        create(text);
+        create(text, percent);
         TaskStore.emitChange();
       }
       break;
 
-    case TodoConstants.TODO_UPDATE_COMPLETION:
-      percent = action.text.trim();
+    case 'TODO_UPDATE_COMPLETION':
+      percent = action.percent.trim();
       if (percent !== '') {
         update(action.id, {percent: percent});
         TaskStore.emitChange();
@@ -139,6 +130,26 @@ AppDispatcher.register(function(action) {
     default:
       // no op
   }
+});
+
+fetch('http://localhost:3000/tasks')
+  .then((response) => response.json())
+  .then((res) => {
+
+    res.forEach((task) => {
+      _todos[task.id] = task;
+    });
+
+    TaskStore.emitChange();
+  });
+
+var socket = io('http://localhost:3000');
+socket.on('ADD_TASK', (t) => {
+
+  var task = JSON.parse(t);
+
+  create(task.label, task.percent);
+  TaskStore.emitChange();
 });
 
 export default TaskStore;
