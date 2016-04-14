@@ -35,6 +35,13 @@ if (production) {
 }
 
 var webpackConfig = {
+    externals: {
+      'Config': JSON.stringify(
+                  production ?
+                  require('./config/production.json') :
+                  require('./config/development.json')
+                )
+    },
     entry: {
         bundle: bundle,
         vendor: ['react']
@@ -49,12 +56,12 @@ var webpackConfig = {
         alias: {
             'assets': path.join(__dirname, 'resources/')
         },
-        extensions: ['', '.js', '.jsx', '.es6', '.less', '.css']
+        extensions: ['', '.js', '.es6', '.less', '.css']
     },
     module: {
         loaders: [
             {
-                test: /\.(jsx|es6)$/,
+                test: /\.(js|es6)$/,
                 exclude: /node_modules/,
                 loaders: jsLoaders
             },

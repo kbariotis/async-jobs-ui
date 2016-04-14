@@ -1,3 +1,103 @@
 body {
-    padding-top: 70px;
+  background: #F3F4F7;
+}
+.navbar {
+  background: white;
+  margin: 0;
+  padding-bottom: 50px;
+}
+.nav-tabs {
+  border: 0;
+}
+.navbar-nav > li.active > a {
+  background: #5F97FB;
+  color: white;
+}
+.navbar-nav > li > a:hover {
+  background: #5F97FB;
+  color: white;
+}
+.bottom-content {
+  background-color: #F3F4F7;
+  padding: 50px 0;
+}
+.top-content {
+  background: white;
+  -moz-box-shadow: inset 10px -10px 10px -15px #000000;
+  -webkit-box-shadow: inset 10px -10px 10px -15px #000000;
+  box-shadow: inset 10px -10px 10px -15px #000000;
+}
+.list-group {
+  -moz-box-shadow: 0 0 1px #ADBEE0;
+  -webkit-box-shadow: 0 0 1px #ADBEE0;
+  box-shadow: 0 0 1px #ADBEE0;
+}
+.list-group-item:last-child,
+.list-group-item:first-child {
+  border-radius: 0;
+}
+.nav-tabs > li.active > a:after {
+  content: '';
+  position: absolute;
+  left: 100px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 40px solid #F3F4F7;
+  border-right: 15px solid transparent;
+  -moz-box-shadow: inset 10px 10px 10px -15px #000000;
+  -webkit-box-shadow: inset 10px 10px 10px -15px #000000;
+  box-shadow: inset 10px 10px 10px -15px #000000;
+}
+.nav-tabs > li > a:hover:before {
+  content: '';
+  position: absolute;
+  left: 100px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 40px solid #F3F4F7;
+  border-right: 15px solid transparent;
+  -moz-box-shadow: inset 10px 10px 10px -15px #000000;
+  -webkit-box-shadow: inset 10px 10px 10px -15px #000000;
+  box-shadow: inset 10px 10px 10px -15px #000000;
+}
+.nav-tabs > li {
+  margin-right: 15px;
+}
+.nav-tabs > li > a {
+  width: 100px;
+  text-align: center;
+  outline: 0;
+  border: 0;
+  color: #767C92;
+}
+.nav-tabs > li > a:hover {
+  background: #F3F4F7;
+  border-radius: 0;
+  border: 0;
+  outline: 0;
+  -moz-box-shadow: inset 10px 10px 10px -15px #000000;
+  -webkit-box-shadow: inset 10px 10px 10px -15px #000000;
+  box-shadow: inset 10px 10px 10px -15px #000000;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  position: relative;
+  border: 0;
+  background: #F3F4F7;
+  color: #5F97FB;
+  border-radius: 0;
+  outline: 0;
+  -moz-box-shadow: inset 10px 10px 10px -15px #000000;
+  -webkit-box-shadow: inset 10px 10px 10px -15px #000000;
+  box-shadow: inset 10px 10px 10px -15px #000000;
+}
+.progress-bar {
+  background-image: -webkit-linear-gradient(top, #337ab7 0%, #5F97FB 100%);
+  background-image: -o-linear-gradient(top, #337ab7 0%, #5F97FB 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#337ab7), to(#5F97FB));
+  background-image: linear-gradient(to bottom, #337ab7 0%, #5F97FB 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff337ab7', endColorstr='#ff5F97FB', GradientType=0);
 }
