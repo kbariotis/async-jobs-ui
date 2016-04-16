@@ -1,40 +1,40 @@
 'use strict';
 
-const conf = require('../utils/conf')();
+const SocketManager = function(socket) {
 
-let socketConnection = null;
-
-const socket = function(socket) {
   this.socket = socket;
 };
 
-socket.prototype.setSocket = function(s) {
+SocketManager.prototype.setSocket = function(s) {
+
   this.socket = s;
 };
-socket.prototype.addJob = function(msg) {
+
+SocketManager.prototype.addJob = function(msg) {
 
   this.socket.emit('ADD_JOB', JSON.stringify(msg));
 };
-socket.prototype.updateJob = function(msg) {
+
+SocketManager.prototype.updateJob = function(msg) {
 
   this.socket.emit('UPDATE_JOB', JSON.stringify(msg));
 };
 
-const socketObject = new socket();
+const socketManager = new SocketManager();
 
-const sockets = function(apiServer) {
+const socketsConnect = function(apiServer) {
 
   let io = require('socket.io')(apiServer.listener);
 
   io.set('origins', 'http://localhost:8080/');
 
   io.on('connection', (socket) => {
-    socketObject.setSocket(socket);
+    socketManager.setSocket(socket);
   });
 
 };
 
 module.exports = {
-  connect: sockets,
-  socket: socketObject
+  connect: socketsConnect,
+  socket: socketManager
 };

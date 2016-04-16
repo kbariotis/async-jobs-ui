@@ -46,7 +46,8 @@ const init = function() {
         if (err) {
           reject(err);
         }
-        console.log('Server running at:', apiServer.info.uri);
+
+        console.log('API Server listening at:', apiServer.info.uri); // eslint-disable-line no-console
         resolve(apiServer);
       })
     );

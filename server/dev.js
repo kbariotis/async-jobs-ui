@@ -1,10 +1,8 @@
 const WebpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
-const config = require('./webpack.config');
-const startServerAPI = require('./server/api');
-const startWSServer = require('./server/sockets');
-
-const conf = require('./server/utils/conf')();
+const config = require('./../webpack.config');
+const startServerAPI = require('./../server/api');
+const startWSServer = require('./../server/sockets');
 
 startServerAPI()
   .then(startWSServer.connect)
@@ -21,10 +19,10 @@ startServerAPI()
 
     server.listen(devPort, 'localhost', (err) => {
       if (err) {
-        console.log(err);
+        console.log(err); // eslint-disable-line no-console
       }
 
-      console.log('Listening at', devPort);
+      console.log('Webpack listening at', devPort); // eslint-disable-line no-console
     });
 
   });

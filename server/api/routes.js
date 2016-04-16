@@ -60,7 +60,7 @@ const setRoutes = function(server) {
         })
         .then(function(job) {
 
-          if(job.lenth) {
+          if(job.length) {
             socketConnection.updateJob(job[0]);
             reply(job[0]);
           } else {
@@ -90,7 +90,7 @@ const setRoutes = function(server) {
         })
         .then(function(job) {
 
-          if(job.lenth) {
+          if(job.length) {
             socketConnection.updateJob(job[0]);
             reply(job[0]);
           } else {

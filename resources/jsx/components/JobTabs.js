@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import JobStore from '../stores/JobStore';
 import ActiveJobComponent from './ActiveJob';
@@ -69,6 +71,6 @@ class JobList extends React.Component {
   _onChange() {
     this.setState({allJobs: JobStore.getAll()});
   }
-};
+}
 
 export default JobList;

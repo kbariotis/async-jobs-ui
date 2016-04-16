@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import moment from 'moment';
 
@@ -45,6 +47,6 @@ class Job extends React.Component {
     );
   }
 
-};
+}
 
 export default Job;
